@@ -1,0 +1,197 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".WidgetMainActivity" >
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="2"
+            android:text="city"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/city"
+            android:layout_alignBottom="@+id/city"
+            android:layout_toRightOf="@+id/city"
+            android:layout_weight="5"
+            android:text="date" />
+
+        <TextView
+            android:id="@+id/week"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/date"
+            android:layout_toRightOf="@+id/date"
+            android:layout_weight="2"
+            android:text="week" />
+
+        <Button
+            android:id="@+id/bt_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更新" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/today_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/today_miaoshu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:paddingRight="1dp"
+            android:text="天气描述" />
+
+        <TextView
+            android:id="@+id/today_wendu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="温度"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/today_fengsu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="1dp"
+            android:text="风速描述"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/today_fengsudengji"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:paddingRight="1dp"
+            android:text="风速级别" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tomorrow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/tomorrow_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tomorrow_miaoshu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:paddingRight="1dp"
+            android:text="天气描述" />
+
+        <TextView
+            android:id="@+id/tomorrow_wendu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="温度"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tomorrow_fengsu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="1dp"
+            android:text="风速描述"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tomorrow_fengsudengji"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:paddingRight="1dp"
+            android:text="风速级别" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/aftertomorrow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/aftertomorrow_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/aftertomorrow_miaoshu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:paddingRight="1dp"
+            android:text="天气描述" />
+
+        <TextView
+            android:id="@+id/aftertomorrow_wendu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="温度"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/aftertomorrow_fengsu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="1dp"
+            android:text="风速描述"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/aftertomorrow_fengsudengji"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:paddingRight="1dp"
+            android:text="风速级别" />
+    </LinearLayout>
+
+</LinearLayout>
