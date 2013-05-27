@@ -3,8 +3,6 @@ package com.ixhh.widgetweather;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -13,14 +11,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.util.DisplayMetrics;
 import android.util.Log;
-import android.widget.LinearLayout;
 import android.widget.RemoteViews;
 import android.widget.Toast;
-
-import com.google.ads.AdRequest;
-import com.google.ads.AdSize;
-import com.google.ads.AdView;
 
 public class WidgetMainActivity extends AppWidgetProvider {
 
@@ -32,8 +26,9 @@ public class WidgetMainActivity extends AppWidgetProvider {
 	public final String url = "http://m.weather.com.cn/data/101230201.html";
 	public final String imgurl_prefix = "http://m.weather.com.cn/img/b";
 	public final String imgurl_postfix = ".gif";
-	private Bitmap b1 = null, b2 = null, b3 = null;
-	
+	private static Bitmap b1 = null, b2 = null, b3 = null;
+	private static Bitmap b12 = null, b22 = null, b32 = null;
+
 	@Override
 	public void onDeleted(Context context, int[] appWidgetIds) {
 		// TODO Auto-generated method stub
@@ -43,6 +38,8 @@ public class WidgetMainActivity extends AppWidgetProvider {
 	@Override
 	public void onDisabled(Context context) {
 		// TODO Auto-generated method stub
+		mWeatherInfo = null;
+		updating = false;
 		super.onDisabled(context);
 	}
 
@@ -63,12 +60,11 @@ public class WidgetMainActivity extends AppWidgetProvider {
 				updating = true;
 				Toast.makeText(context, "开始更新", Toast.LENGTH_LONG).show();
 				mWeatherInfo = null;
-				updatedata(context);				
+				updatedata(context);
 			} else {
 				Toast.makeText(context, "正在更新", Toast.LENGTH_LONG).show();
 			}
 		}
-
 		super.onReceive(context, intent);
 	}
 
@@ -81,17 +77,20 @@ public class WidgetMainActivity extends AppWidgetProvider {
 
 		if (mWeatherInfo == null) {
 			updatedata(context);
-			
+
 		} else {
 			updateviews(context);
 		}
-				
+
+		DisplayMetrics metrics = new DisplayMetrics();
+		Log.i(TAG, metrics.toString());
+
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
 
 	}
-	
-	private void startadActivity(Context context){
-		Intent intent=new Intent();
+
+	private void startadActivity(Context context) {
+		Intent intent = new Intent();
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.setClass(context, AdMainActivity.class);
 		context.startActivity(intent);
@@ -107,14 +106,18 @@ public class WidgetMainActivity extends AppWidgetProvider {
 		mRemoteViews.setOnClickPendingIntent(R.id.bt_update, pendingintent);
 		if (mWeatherInfo != null) {
 			mRemoteViews.setTextViewText(R.id.city, mWeatherInfo.mcity);
-			mRemoteViews.setTextViewText(R.id.date, mWeatherInfo.mdate_y
-					+ "以及今后2天天气");
+			mRemoteViews.setTextViewText(R.id.date, mWeatherInfo.mdate_y);
 			mRemoteViews.setTextViewText(R.id.week, mWeatherInfo.mweek);
 
-			if (b1 != null && b2 != null && b3 != null) {
+			if (b1 != null && b2 != null && b3 != null && b12 != null
+					&& b22 != null && b32 != null) {
 				mRemoteViews.setImageViewBitmap(R.id.today_img, b1);
 				mRemoteViews.setImageViewBitmap(R.id.tomorrow_img, b2);
 				mRemoteViews.setImageViewBitmap(R.id.aftertomorrow_img, b3);
+
+				mRemoteViews.setImageViewBitmap(R.id.today_img2, b12);
+				mRemoteViews.setImageViewBitmap(R.id.tomorrow_img2, b22);
+				mRemoteViews.setImageViewBitmap(R.id.aftertomorrow_img2, b32);
 			}
 			mRemoteViews.setTextViewText(R.id.today_miaoshu,
 					mWeatherInfo.mWeatherinfoDaylist[1].weather);
@@ -122,8 +125,8 @@ public class WidgetMainActivity extends AppWidgetProvider {
 					mWeatherInfo.mWeatherinfoDaylist[1].temp);
 			mRemoteViews.setTextViewText(R.id.today_fengsu,
 					mWeatherInfo.mWeatherinfoDaylist[1].wind);
-			mRemoteViews.setTextViewText(R.id.today_fengsudengji,
-					mWeatherInfo.mWeatherinfoDaylist[1].fl);
+			// mRemoteViews.setTextViewText(R.id.today_fengsudengji,
+			// mWeatherInfo.mWeatherinfoDaylist[1].fl);
 
 			mRemoteViews.setTextViewText(R.id.tomorrow_miaoshu,
 					mWeatherInfo.mWeatherinfoDaylist[2].weather);
@@ -131,8 +134,8 @@ public class WidgetMainActivity extends AppWidgetProvider {
 					mWeatherInfo.mWeatherinfoDaylist[2].temp);
 			mRemoteViews.setTextViewText(R.id.tomorrow_fengsu,
 					mWeatherInfo.mWeatherinfoDaylist[2].wind);
-			mRemoteViews.setTextViewText(R.id.tomorrow_fengsudengji,
-					mWeatherInfo.mWeatherinfoDaylist[2].fl);
+			// mRemoteViews.setTextViewText(R.id.tomorrow_fengsudengji,
+			// mWeatherInfo.mWeatherinfoDaylist[2].fl);
 
 			mRemoteViews.setTextViewText(R.id.aftertomorrow_miaoshu,
 					mWeatherInfo.mWeatherinfoDaylist[3].weather);
@@ -140,8 +143,8 @@ public class WidgetMainActivity extends AppWidgetProvider {
 					mWeatherInfo.mWeatherinfoDaylist[3].temp);
 			mRemoteViews.setTextViewText(R.id.aftertomorrow_fengsu,
 					mWeatherInfo.mWeatherinfoDaylist[3].wind);
-			mRemoteViews.setTextViewText(R.id.aftertomorrow_fengsudengji,
-					mWeatherInfo.mWeatherinfoDaylist[3].fl);
+			// mRemoteViews.setTextViewText(R.id.aftertomorrow_fengsudengji,
+			// mWeatherInfo.mWeatherinfoDaylist[3].fl);
 		}
 
 		ComponentName mComponentName = new ComponentName(context,
@@ -161,17 +164,24 @@ public class WidgetMainActivity extends AppWidgetProvider {
 				// TODO Auto-generated method stub
 				Network network = new Network(cont);
 				final JSONObject jso = network.readjson(url);
+				if (jso == null) {
+					return null;
+				}
 				try {
 					b1 = network.getbitmap(imgurl_prefix
 							+ jso.getString("img1") + imgurl_postfix);
 					b2 = network.getbitmap(imgurl_prefix
-							+ jso.getString("img2") + imgurl_postfix);
-					
-					Log.i(TAG, "b2 uri---->"+imgurl_prefix
-							+ jso.getString("img2") + imgurl_postfix);
-					
-					b3 = network.getbitmap(imgurl_prefix
 							+ jso.getString("img3") + imgurl_postfix);
+					b3 = network.getbitmap(imgurl_prefix
+							+ jso.getString("img5") + imgurl_postfix);
+
+					b12 = network.getbitmap(imgurl_prefix
+							+ jso.getString("img2") + imgurl_postfix);
+					b22 = network.getbitmap(imgurl_prefix
+							+ jso.getString("img4") + imgurl_postfix);
+					b32 = network.getbitmap(imgurl_prefix
+							+ jso.getString("img6") + imgurl_postfix);
+
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -184,13 +194,19 @@ public class WidgetMainActivity extends AppWidgetProvider {
 			protected void onPostExecute(JSONObject result) {
 				// TODO Auto-generated method stub
 				super.onPostExecute(result);
+				if (result == null) {
+					Toast.makeText(cont, "获取数据失败，请重试。", Toast.LENGTH_LONG)
+							.show();
+					return;
+				}
+
 				try {
 					mWeatherInfo = new WeatherInfo(cont, result);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 				updateviews(cont);
 				startadActivity(cont);
 			}

@@ -27,35 +27,35 @@ public class Network {
 		this.context = context;
 	}
 
-	protected Bitmap getbitmap(String url) {  
-        // TODO Auto-generated method stub  
-            
-        URL file = null;  
-        Bitmap bitmap = null;  
-  
-        try {  
-            file = new URL(url);  
-        } catch (MalformedURLException e) {  
-            // TODO Auto-generated catch block  
-            e.printStackTrace();  
-        }        
-        try {  
-            HttpURLConnection conn = (HttpURLConnection) file.openConnection();  
-            conn.setDoInput(true);  
-            conn.connect();  
-            InputStream is = conn.getInputStream();  
-            bitmap = BitmapFactory.decodeStream(is);  
-            is.close();  
-        } catch (IOException e) {  
-            e.printStackTrace();  
-        }  
-        
-        return bitmap;  
-  
-    }
-	
-	public JSONObject readjson(String url) {
+	protected Bitmap getbitmap(String url) {
+		// TODO Auto-generated method stub
 
+		URL file = null;
+		Bitmap bitmap = null;
+
+		try {
+			file = new URL(url);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			HttpURLConnection conn = (HttpURLConnection) file.openConnection();
+			conn.setDoInput(true);
+			conn.connect();
+			InputStream is = conn.getInputStream();
+			bitmap = BitmapFactory.decodeStream(is);
+			is.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return bitmap;
+
+	}
+
+	public JSONObject readjson(String url) {
+		JSONObject jsonObject = null;
 		try {
 			DefaultHttpClient httpClient = new DefaultHttpClient(
 					new BasicHttpParams());
@@ -78,14 +78,14 @@ public class Network {
 
 				Log.i("cat", ">>>>>>" + builder.toString());
 
-				JSONObject jsonObject = new JSONObject(builder.toString())
+				jsonObject = new JSONObject(builder.toString())
 						.getJSONObject("weatherinfo");
-				return jsonObject;
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return jsonObject;
 	}
 
 }

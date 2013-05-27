@@ -15,18 +15,24 @@ public final class R {
     }
     public static final class id {
         public static final int LinearLayout1=0x7f080000;
+        public static final int TextView01=0x7f08001b;
+        public static final int TextView02=0x7f080023;
+        public static final int TextView03=0x7f080025;
+        public static final int TextView04=0x7f08002b;
+        public static final int TextView05=0x7f08002d;
         public static final int adView=0x7f080001;
-        public static final int aftertomorrow=0x7f080025;
-        public static final int aftertomorrow_fengsu=0x7f080029;
-        public static final int aftertomorrow_fengsudengji=0x7f08002a;
-        public static final int aftertomorrow_img=0x7f080026;
-        public static final int aftertomorrow_miaoshu=0x7f080027;
-        public static final int aftertomorrow_wendu=0x7f080028;
+        public static final int aftertomorrow=0x7f08002a;
+        public static final int aftertomorrow_fengsu=0x7f080031;
+        public static final int aftertomorrow_img=0x7f08002c;
+        public static final int aftertomorrow_img2=0x7f08002e;
+        public static final int aftertomorrow_miaoshu=0x7f08002f;
+        public static final int aftertomorrow_wendu=0x7f080030;
         public static final int ag=0x7f080014;
-        public static final int bt_update=0x7f080018;
+        public static final int bt_update=0x7f080019;
         public static final int city=0x7f080002;
         public static final int cl=0x7f080015;
         public static final int co=0x7f080013;
+        public static final int container=0x7f080017;
         public static final int date=0x7f080003;
         public static final int fengsu=0x7f080008;
         public static final int fengsudengji=0x7f08000a;
@@ -38,25 +44,26 @@ public final class R {
         public static final int index_d=0x7f08000d;
         public static final int jianyi=0x7f08000b;
         public static final int ls=0x7f080012;
-        public static final int menu_settings=0x7f08002b;
+        public static final int menu_settings=0x7f080032;
+        public static final int textView1=0x7f08001d;
         public static final int title=0x7f080016;
-        public static final int today=0x7f080019;
-        public static final int today_fengsu=0x7f08001d;
-        public static final int today_fengsudengji=0x7f08001e;
-        public static final int today_img=0x7f08001a;
-        public static final int today_miaoshu=0x7f08001b;
-        public static final int today_wendu=0x7f08001c;
+        public static final int today=0x7f08001a;
+        public static final int today_fengsu=0x7f080021;
+        public static final int today_img=0x7f08001c;
+        public static final int today_img2=0x7f08001e;
+        public static final int today_miaoshu=0x7f08001f;
+        public static final int today_wendu=0x7f080020;
         public static final int todaytem=0x7f080004;
-        public static final int tomorrow=0x7f08001f;
-        public static final int tomorrow_fengsu=0x7f080023;
-        public static final int tomorrow_fengsudengji=0x7f080024;
-        public static final int tomorrow_img=0x7f080020;
-        public static final int tomorrow_miaoshu=0x7f080021;
-        public static final int tomorrow_wendu=0x7f080022;
+        public static final int tomorrow=0x7f080022;
+        public static final int tomorrow_fengsu=0x7f080029;
+        public static final int tomorrow_img=0x7f080024;
+        public static final int tomorrow_img2=0x7f080026;
+        public static final int tomorrow_miaoshu=0x7f080027;
+        public static final int tomorrow_wendu=0x7f080028;
         public static final int tr=0x7f080011;
         public static final int weather=0x7f080007;
         public static final int weathertop=0x7f080005;
-        public static final int week=0x7f080017;
+        public static final int week=0x7f080018;
         public static final int xc=0x7f080010;
     }
     public static final class layout {
@@ -68,6 +75,7 @@ public final class R {
         public static final int activity_widget_main=0x7f070001;
     }
     public static final class string {
+        public static final int am=0x7f05000d;
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050001;
         public static final int index48prefix=0x7f050006;
@@ -79,6 +87,7 @@ public final class R {
         public static final int index_xcprefix=0x7f050007;
         public static final int indexprefix=0x7f050005;
         public static final int menu_settings=0x7f050002;
+        public static final int pm=0x7f05000e;
         public static final int temprefix=0x7f050004;
         public static final int title_activity_ad_main=0x7f050003;
     }

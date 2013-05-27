@@ -9,36 +9,36 @@
     <LinearLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
         <TextView
             android:id="@+id/city"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:layout_weight="2"
             android:text="city"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <TextView
-            android:id="@+id/date"
+        <LinearLayout
+            android:id="@+id/container"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/city"
-            android:layout_alignBottom="@+id/city"
-            android:layout_toRightOf="@+id/city"
-            android:layout_weight="5"
-            android:text="date" />
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/week"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/date"
-            android:layout_toRightOf="@+id/date"
-            android:layout_weight="2"
-            android:text="week" />
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="date" />
+
+            <TextView
+                android:id="@+id/week"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="week" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/bt_update"
@@ -52,8 +52,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top|center"
+            android:text="@string/am"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="6sp" />
+
         <ImageView
             android:id="@+id/today_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top|center"
+            android:text="@string/pm"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="6sp" />
+
+        <ImageView
+            android:id="@+id/today_img2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_launcher" />
@@ -62,8 +86,7 @@
             android:id="@+id/today_miaoshu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:paddingRight="1dp"
+            android:layout_weight="2"
             android:text="天气描述" />
 
         <TextView
@@ -82,24 +105,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingLeft="1dp"
             android:text="风速描述"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/today_fengsudengji"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:paddingRight="1dp"
-            android:text="风速级别" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/tomorrow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/TextView02"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top|center"
+            android:text="@string/am"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="6sp" />
 
         <ImageView
             android:id="@+id/tomorrow_img"
@@ -108,10 +131,25 @@
             android:src="@drawable/ic_launcher" />
 
         <TextView
+            android:id="@+id/TextView03"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top|center"
+            android:text="@string/pm"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="6sp" />
+
+        <ImageView
+            android:id="@+id/tomorrow_img2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
             android:id="@+id/tomorrow_miaoshu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:paddingRight="1dp"
             android:text="天气描述" />
 
@@ -131,24 +169,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingLeft="1dp"
             android:text="风速描述"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/tomorrow_fengsudengji"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:paddingRight="1dp"
-            android:text="风速级别" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/aftertomorrow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/TextView04"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top|center"
+            android:text="@string/am"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="6sp" />
 
         <ImageView
             android:id="@+id/aftertomorrow_img"
@@ -157,10 +195,25 @@
             android:src="@drawable/ic_launcher" />
 
         <TextView
+            android:id="@+id/TextView05"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top|center"
+            android:text="@string/pm"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="6sp" />
+
+        <ImageView
+            android:id="@+id/aftertomorrow_img2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
             android:id="@+id/aftertomorrow_miaoshu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:paddingRight="1dp"
             android:text="天气描述" />
 
@@ -180,18 +233,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingLeft="1dp"
             android:text="风速描述"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/aftertomorrow_fengsudengji"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:paddingRight="1dp"
-            android:text="风速级别" />
     </LinearLayout>
 
 </LinearLayout>
