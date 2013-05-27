@@ -82,8 +82,8 @@ public class WidgetMainActivity extends AppWidgetProvider {
 			updateviews(context);
 		}
 
-		DisplayMetrics metrics = new DisplayMetrics();
-		Log.i(TAG, metrics.toString());
+//		DisplayMetrics metrics = new DisplayMetrics();
+//		Log.i(TAG, metrics.toString());
 
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
 
@@ -197,6 +197,7 @@ public class WidgetMainActivity extends AppWidgetProvider {
 				if (result == null) {
 					Toast.makeText(cont, "获取数据失败，请重试。", Toast.LENGTH_LONG)
 							.show();
+					updating = false;
 					return;
 				}
 
