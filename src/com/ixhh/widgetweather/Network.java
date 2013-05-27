@@ -30,22 +30,35 @@ public class Network {
 	protected Bitmap getbitmap(String url) {
 		// TODO Auto-generated method stub
 
-		URL file = null;
+//		URL file = null;
 		Bitmap bitmap = null;
 
+		// try {
+		// file = new URL(url);
+		// } catch (MalformedURLException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 		try {
-			file = new URL(url);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			HttpURLConnection conn = (HttpURLConnection) file.openConnection();
-			conn.setDoInput(true);
-			conn.connect();
-			InputStream is = conn.getInputStream();
-			bitmap = BitmapFactory.decodeStream(is);
-			is.close();
+
+			DefaultHttpClient httpClient = new DefaultHttpClient(
+					new BasicHttpParams());
+			// HttpUriRequest httpPost=new
+			int res = 0;
+			final HttpGet getMethod = new HttpGet(url);
+			res = httpClient.execute(getMethod).getStatusLine().getStatusCode();
+			Log.i("xhh", "res--------->" + res);
+			if (res == 200) {
+				HttpResponse httpResponse = httpClient.execute(getMethod);
+				InputStream is = httpResponse.getEntity().getContent();
+				// HttpURLConnection conn = (HttpURLConnection)
+				// file.openConnection();
+				// conn.setDoInput(true);
+				// conn.connect();
+				// InputStream is = conn.getInputStream();
+				bitmap = BitmapFactory.decodeStream(is);
+				// is.close();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

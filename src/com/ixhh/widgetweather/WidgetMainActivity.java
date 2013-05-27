@@ -118,6 +118,8 @@ public class WidgetMainActivity extends AppWidgetProvider {
 				mRemoteViews.setImageViewBitmap(R.id.today_img2, b12);
 				mRemoteViews.setImageViewBitmap(R.id.tomorrow_img2, b22);
 				mRemoteViews.setImageViewBitmap(R.id.aftertomorrow_img2, b32);
+			}else{
+				Toast.makeText(context, "Õº∆¨ªÒ»° ß∞‹ «Î÷ÿ ‘", Toast.LENGTH_LONG).show();
 			}
 			mRemoteViews.setTextViewText(R.id.today_miaoshu,
 					mWeatherInfo.mWeatherinfoDaylist[1].weather);
