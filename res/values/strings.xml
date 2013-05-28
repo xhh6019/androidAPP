@@ -7,8 +7,8 @@
     <string name="title_activity_ad_main">AdMainActivity</string>
     <string name="temprefix">今天温度：</string>
     <string name="indexprefix">今天穿衣指数:</string>
-    <string name="index48prefix">48小时穿衣指数：</string>
-    <string name="index_xcprefix">洗车：</string>
+    <string name="index48prefix">48小时穿衣指数:</string>
+    <string name="index_xcprefix">洗车:</string>
     <string name="index_tr">旅游:</string>
     <string name="index_co">舒适指数:</string>
     <string name="index_cl">晨练:</string>
