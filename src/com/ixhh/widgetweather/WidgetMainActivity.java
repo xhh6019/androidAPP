@@ -39,6 +39,7 @@ public class WidgetMainActivity extends AppWidgetProvider {
 		// TODO Auto-generated method stub
 		mWeatherInfo = null;
 		updating = false;
+		bitmapdestroy();
 		super.onDisabled(context);
 	}
 
@@ -107,6 +108,7 @@ public class WidgetMainActivity extends AppWidgetProvider {
 		RemoteViews mRemoteViews = new RemoteViews(context.getPackageName(),
 				R.layout.activity_widget_main);
 		mRemoteViews.setOnClickPendingIntent(R.id.bt_update, pendingintent);
+
 		if (mWeatherInfo != null) {
 			mRemoteViews.setTextViewText(R.id.city, mWeatherInfo.mcity);
 			mRemoteViews.setTextViewText(R.id.date, mWeatherInfo.mdate_y);
@@ -154,7 +156,6 @@ public class WidgetMainActivity extends AppWidgetProvider {
 
 		ComponentName mComponentName = new ComponentName(context,
 				WidgetMainActivity.class);
-
 		AppWidgetManager mAppWidgetManager = AppWidgetManager
 				.getInstance(context);
 		updating = false;
@@ -227,7 +228,7 @@ public class WidgetMainActivity extends AppWidgetProvider {
 							b32 = network.getbitmap(imgurl_prefix + imgid2
 									+ imgurl_postfix);
 						}
-					}					
+					}
 					return jso;
 				}
 
@@ -248,17 +249,27 @@ public class WidgetMainActivity extends AppWidgetProvider {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-
 					updateviews(cont);
 					startadActivity(cont);
 				}
 
 			}.execute();
-		}else{
+		} else {
 			Toast.makeText(cont, "请使用wifi连接数据", Toast.LENGTH_LONG).show();
+			updateviews(cont);
 		}
 	}
 
-	
+	private void bitmapdestroy() {
+		if (b1 != null && b2 != null && b3 != null && b12 != null
+				&& b22 != null && b32 != null) {
+			b1.recycle();
+			b2.recycle();
+			b3.recycle();
+			b12.recycle();
+			b22.recycle();
+			b32.recycle();
+		}
+	}
 
 }
