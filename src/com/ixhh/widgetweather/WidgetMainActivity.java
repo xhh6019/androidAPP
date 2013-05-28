@@ -162,145 +162,103 @@ public class WidgetMainActivity extends AppWidgetProvider {
 	}
 
 	private void updatedata(final Context cont) {
-		new AsyncTask<Void, Void, JSONObject>() {
+		if (Network.NETWORK_TYPE_WIFI == Network.getCurrentNetType(cont)) {
+			new AsyncTask<Void, Void, JSONObject>() {
 
-			@Override
-			protected JSONObject doInBackground(Void... params) {
-				// TODO Auto-generated method stub
-				Network network = new Network(cont);
-				final JSONObject jso = network.readjson(url);
-				if (jso == null) {
-					return null;
-				}
-				String imgid1 = null;
-				String imgid2 = null;
-				try {
-					imgid1 = jso.getString("img1");
-					imgid2 = jso.getString("img2");
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				if (imgid1 != null && imgid2 != null) {
-					b1 = network.getbitmap(imgurl_prefix + imgid1
-							+ imgurl_postfix);
-					if (imgid2.equals("99")) {
-						b12 = b1;
-					} else {
-						b12 = network.getbitmap(imgurl_prefix + imgid2
-								+ imgurl_postfix);
+				@Override
+				protected JSONObject doInBackground(Void... params) {
+					// TODO Auto-generated method stub
+					Network network = new Network(cont);
+					final JSONObject jso = network.readjson(url);
+					if (jso == null) {
+						return null;
 					}
-				}
-
-				try {
-					imgid1 = jso.getString("img3");
-					imgid2 = jso.getString("img4");
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				if (imgid1 != null && imgid2 != null) {
-					b2 = network.getbitmap(imgurl_prefix + imgid1
-							+ imgurl_postfix);
-					if (imgid2.equals("99")) {
-						b22 = b2;
-					} else {
-						b22 = network.getbitmap(imgurl_prefix + imgid2
-								+ imgurl_postfix);
+					String imgid1 = null;
+					String imgid2 = null;
+					try {
+						imgid1 = jso.getString("img1");
+						imgid2 = jso.getString("img2");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-				}
-
-				try {
-					imgid1 = jso.getString("img5");
-					imgid2 = jso.getString("img6");
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				if (imgid1 != null && imgid2 != null) {
-					b3 = network.getbitmap(imgurl_prefix + imgid1
-							+ imgurl_postfix);
-					if (imgid2.equals("99")) {
-						b32 = b3;
-					} else {
-						b32 = network.getbitmap(imgurl_prefix + imgid2
+					if (imgid1 != null && imgid2 != null) {
+						b1 = network.getbitmap(imgurl_prefix + imgid1
 								+ imgurl_postfix);
+						if (imgid2.equals("99")) {
+							b12 = b1;
+						} else {
+							b12 = network.getbitmap(imgurl_prefix + imgid2
+									+ imgurl_postfix);
+						}
 					}
+
+					try {
+						imgid1 = jso.getString("img3");
+						imgid2 = jso.getString("img4");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if (imgid1 != null && imgid2 != null) {
+						b2 = network.getbitmap(imgurl_prefix + imgid1
+								+ imgurl_postfix);
+						if (imgid2.equals("99")) {
+							b22 = b2;
+						} else {
+							b22 = network.getbitmap(imgurl_prefix + imgid2
+									+ imgurl_postfix);
+						}
+					}
+
+					try {
+						imgid1 = jso.getString("img5");
+						imgid2 = jso.getString("img6");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if (imgid1 != null && imgid2 != null) {
+						b3 = network.getbitmap(imgurl_prefix + imgid1
+								+ imgurl_postfix);
+						if (imgid2.equals("99")) {
+							b32 = b3;
+						} else {
+							b32 = network.getbitmap(imgurl_prefix + imgid2
+									+ imgurl_postfix);
+						}
+					}					
+					return jso;
 				}
 
-				// try {
+				@Override
+				protected void onPostExecute(JSONObject result) {
+					// TODO Auto-generated method stub
+					super.onPostExecute(result);
+					if (result == null) {
+						Toast.makeText(cont, "获取数据失败，请重试。", Toast.LENGTH_LONG)
+								.show();
+						updating = false;
+						return;
+					}
 
-				// b1 = network.getbitmap(imgurl_prefix
-				// + jso.getString("img1") + imgurl_postfix);
-				// b2 = network.getbitmap(imgurl_prefix
-				// + jso.getString("img3") + imgurl_postfix);
-				// b3 = network.getbitmap(imgurl_prefix
-				// + jso.getString("img5") + imgurl_postfix);
-				//
-				// b12 = network.getbitmap(imgurl_prefix
-				// + jso.getString("img2") + imgurl_postfix);
-				// b22 = network.getbitmap(imgurl_prefix
-				// + jso.getString("img4") + imgurl_postfix);
-				// b32 = network.getbitmap(imgurl_prefix
-				// + jso.getString("img6") + imgurl_postfix);
-				// setImagepairs(jso, cont, b1, b12);
-				// setImagepairs(jso, cont, b2, b22);
-				// setImagepairs(jso, cont, b3, b32);
+					try {
+						mWeatherInfo = new WeatherInfo(cont, result);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
-				// } catch (JSONException e) {
-				// // TODO Auto-generated catch block
-				// e.printStackTrace();
-				// }
-				return jso;
-
-			}
-
-			@Override
-			protected void onPostExecute(JSONObject result) {
-				// TODO Auto-generated method stub
-				super.onPostExecute(result);
-				if (result == null) {
-					Toast.makeText(cont, "获取数据失败，请重试。", Toast.LENGTH_LONG)
-							.show();
-					updating = false;
-					return;
+					updateviews(cont);
+					startadActivity(cont);
 				}
 
-				try {
-					mWeatherInfo = new WeatherInfo(cont, result);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				updateviews(cont);
-				startadActivity(cont);
-			}
-
-		}.execute();
-	}
-
-	private void setImagepairs(JSONObject jso, Context cont, Bitmap b1,
-			Bitmap b12) {
-		Network network = new Network(cont);
-		String imgid1 = null;
-		String imgid2 = null;
-		try {
-			imgid1 = jso.getString("img1");
-			imgid2 = jso.getString("img2");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (imgid1 != null && imgid2 != null) {
-			b1 = network.getbitmap(imgurl_prefix + imgid1 + imgurl_postfix);
-			if (imgid1.equals(imgid2)) {
-				b12 = b1;
-			} else {
-				b12 = network
-						.getbitmap(imgurl_prefix + imgid2 + imgurl_postfix);
-			}
+			}.execute();
+		}else{
+			Toast.makeText(cont, "请使用wifi连接数据", Toast.LENGTH_LONG).show();
 		}
 	}
+
+	
 
 }
