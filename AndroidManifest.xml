@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ixhh.smsquery"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="4"
+        android:targetSdkVersion="16" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_coin"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <receiver
+            android:name="AppwidgetMainActivity"
+            android:icon="@drawable/ic_coin"
+            android:label="@string/button_text"
+            android:permission="android.permission.SEND_SMS" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.ixhh.smsquery.AppwidgetMainActivity.query" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/settings" />
+        </receiver>
+    </application>
+
+</manifest>
