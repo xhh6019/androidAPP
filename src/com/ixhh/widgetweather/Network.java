@@ -27,13 +27,7 @@ public class Network {
 	public Network(Context context) {
 		this.context = context;
 	}
-
-	/**
-	 * 获取当前网络状态的类型
-	 * 
-	 * @param mContext
-	 * @return 返回网络类型
-	 */
+	
 	public static final int NETWORK_TYPE_NONE = -0x1; // 断网情况
 	public static final int NETWORK_TYPE_WIFI = 0x1; // WiFi模式
 	public static final int NETWOKR_TYPE_MOBILE = 0x2; // gprs模式
